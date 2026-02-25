@@ -24,9 +24,16 @@ const Settings = () => {
     const navigate = useNavigate();
 
     const handleLogout = async () => {
-        if (supabase) {
-            await supabase.auth.signOut();
+        try {
+            if (supabase) {
+                await supabase.auth.signOut();
+            }
+        } catch (error) {
+            console.warn("Supabase signout skipped (no backend connected).");
+        } finally {
+            localStorage.removeItem('task-manager-storage');
             navigate('/auth');
+            window.location.reload(); // Force a hard reload to clear all in-memory Zustand states
         }
     };
 
