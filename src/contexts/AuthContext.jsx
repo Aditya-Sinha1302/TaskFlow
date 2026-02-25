@@ -11,8 +11,10 @@ export const AuthProvider = ({ children }) => {
     const updateProfile = useStore(state => state.updateProfile);
 
     useEffect(() => {
-        // If supabase is missing (no keys provided yet), bypass auth lock
+        // If supabase is missing (no keys provided on Vercel), bypass auth lock entirely
         if (!supabase) {
+            console.warn("Supabase credentials missing! Running in local mock mode.");
+            setUser({ email: 'demo@taskflow.demo' });
             setLoading(false);
             return;
         }
