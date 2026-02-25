@@ -52,7 +52,7 @@ const Auth = () => {
 
     return (
         <div className="auth-container">
-            <div className="auth-card glass">
+            <div className="auth-card">
                 <div className="auth-header">
                     <div className="auth-logo-glow">
                         <div className="icon-pulse-wrapper">

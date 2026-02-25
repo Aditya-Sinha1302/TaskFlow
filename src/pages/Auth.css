@@ -4,13 +4,14 @@
     align-items: center;
     justify-content: center;
     padding: 24px;
-    background-color: #030303;
+    background-color: #000000;
     background-image:
-        radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08), transparent 25%),
-        radial-gradient(circle at 85% 30%, rgba(168, 85, 247, 0.08), transparent 25%);
+        radial-gradient(circle at 15% 50%, rgba(100, 50, 255, 0.25), transparent 45%),
+        radial-gradient(circle at 85% 30%, rgba(200, 50, 255, 0.25), transparent 45%);
     position: relative;
     overflow: hidden;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #ffffff;
 }
 
 /* Base grid pattern for the "developer/antigravity" look */
@@ -19,19 +20,19 @@
     inset: 0;
     z-index: 0;
     pointer-events: none;
-    background-size: 50px 50px;
+    background-size: 60px 60px;
     background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
-    -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
 }
 
 .blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(100px);
-    opacity: 0.6;
+    filter: blur(120px);
+    opacity: 0.8;
     z-index: 0;
     mix-blend-mode: screen;
 }
@@ -39,16 +40,16 @@
 .blob-1 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-    top: -200px;
-    left: -200px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
+    top: -150px;
+    left: -150px;
     animation: drift 20s ease-in-out infinite alternate;
 }
 
 .blob-2 {
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, rgba(0, 0, 0, 0) 70%);
     bottom: -150px;
     right: -100px;
     animation: drift 25s ease-in-out infinite alternate-reverse;
@@ -71,16 +72,29 @@
     padding: 48px 40px;
     border-radius: 24px;
     z-index: 10;
-    background: rgba(15, 15, 17, 0.6);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 10, 12, 0.5);
+    backdrop-filter: blur(60px);
+    -webkit-backdrop-filter: blur(60px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow:
-        0 25px 50px -12px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        0 40px 80px -12px rgba(0, 0, 0, 1),
+        0 0 0 1px rgba(255, 255, 255, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
     animation: cardReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     transform: translateY(20px);
     opacity: 0;
+    position: relative;
+}
+
+/* Add an inner glowing aura to the card itself */
+.auth-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    pointer-events: none;
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    z-index: 1;
 }
 
 @keyframes cardReveal {
@@ -93,6 +107,8 @@
 .auth-header {
     text-align: center;
     margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
 }
 
 .auth-header h2 {
@@ -100,11 +116,8 @@
     font-weight: 700;
     letter-spacing: -0.02em;
     margin-bottom: 12px;
-    background: linear-gradient(180deg, #FFFFFF 0%, #A1A1AA 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+    color: #ffffff;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
 }
 
 .auth-header p {
@@ -117,13 +130,15 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    position: relative;
+    z-index: 2;
 }
 
 .form-group label {
     display: block;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #E4E4E7;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #A1A1AA;
     margin-bottom: 8px;
     margin-left: 2px;
     text-transform: uppercase;
@@ -139,7 +154,7 @@
 .input-icon {
     position: absolute;
     left: 16px;
-    color: #71717A;
+    color: #52525B;
     transition: color 0.3s ease;
 }
 
@@ -328,6 +343,7 @@
     z-index: -1;
     pointer-events: none;
 }
+
 .auth-logo-glow {
     display: flex;
     justify-content: center;
@@ -342,7 +358,7 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.2) 100%);
-    box-shadow: 
+    box-shadow:
         0 0 30px rgba(99, 102, 241, 0.3),
         inset 0 0 20px rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -351,11 +367,22 @@
 
 .brand-icon {
     color: #fff;
-    filter: drop-shadow(0 0 10px rgba(255,255,255,0.5));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
 }
 
 @keyframes gentlePulse {
-    0% { transform: scale(1); box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); }
-    50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(168, 85, 247, 0.5); }
-    100% { transform: scale(1); box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); }
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 50px rgba(168, 85, 247, 0.5);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+    }
 }
