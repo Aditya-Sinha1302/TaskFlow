@@ -54,6 +54,11 @@ const Auth = () => {
         <div className="auth-container">
             <div className="auth-card glass">
                 <div className="auth-header">
+                    <div className="auth-logo-glow">
+                        <div className="icon-pulse-wrapper">
+                            <Lock size={32} className="brand-icon" />
+                        </div>
+                    </div>
                     <h2>{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
                     <p>{isLogin ? 'Log in to manage your tasks securely.' : 'Sign up to get started with your new workspace.'}</p>
                 </div>
