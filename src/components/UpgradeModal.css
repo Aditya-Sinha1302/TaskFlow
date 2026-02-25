@@ -1,0 +1,145 @@
+.upgrade-modal {
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    animation: slideUp var(--transition-normal);
+}
+
+/* Beautiful gradient flare background inside the modal */
+.upgrade-modal::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.upgrade-header,
+.upgrade-features,
+.upgrade-actions {
+    position: relative;
+    z-index: 10;
+}
+
+.upgrade-header .pro-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--vibrant-progress));
+    color: white;
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.sparkle-icon {
+    animation: pulse 2s infinite;
+}
+
+.upgrade-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.upgrade-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 32px;
+}
+
+.upgrade-features {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    margin-bottom: 40px;
+    background: var(--bg-tertiary);
+    padding: 24px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid var(--border-color);
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.feature-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(16, 185, 129, 0.2);
+    color: var(--status-done-text);
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.upgrade-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.upgrade-btn {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
+    text-decoration: none;
+}
+
+.pulse-glow {
+    box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    animation: pulse-ring 2s infinite;
+}
+
+.text-btn {
+    background: transparent;
+    color: var(--text-secondary);
+    border: none;
+    box-shadow: none;
+}
+
+.text-btn:hover {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(99, 102, 241, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
+}
