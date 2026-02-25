@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
 
             // Sync user email to profile state if available
             if (session?.user?.email) {
-                updateProfile({ email: session.user.email, isPro: true });
+                updateProfile({ email: session.user.email });
             }
             setLoading(false);
         };
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
             setSession(session);
             setUser(session?.user ?? null);
             if (session?.user?.email) {
-                updateProfile({ email: session.user.email, isPro: true });
+                updateProfile({ email: session.user.email });
             }
         });
 
