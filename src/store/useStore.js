@@ -8,10 +8,10 @@ export const useStore = create(
       setTheme: (theme) => set({ theme }),
 
       profile: {
-        name: 'Aditya Sinha',
-        role: 'TaskFlow Founder',
-        avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=Aditya',
-        isPro: true // Hardcoded to true for demo purposes
+        name: 'User',
+        role: 'Member',
+        avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=User',
+        isPro: false
       },
       updateProfile: (profile) => set((state) => ({ profile: { ...state.profile, ...profile } })),
 
