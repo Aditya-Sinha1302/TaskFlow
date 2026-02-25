@@ -42,7 +42,7 @@ app.post('/api/create-order', async (req, res) => {
             order_id: order.id,
             amount: order.amount,
             currency: order.currency,
-            key_id: process.env.VITE_RAZORPAY_KEY_ID || 'dummy_key_id'
+            key_id: process.env.VITE_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || 'dummy_key_id'
         });
 
     } catch (error) {
