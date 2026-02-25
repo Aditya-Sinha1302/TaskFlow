@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import Razorpay from 'razorpay';
+import rateLimit from 'express-rate-limit';
 import * as dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -10,16 +11,27 @@ const __dirname = dirname(__filename);
 dotenv.config({ path: join(__dirname, '../.env.local') });
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: ['http://localhost:5173', 'https://task-flow-alpha-nine.vercel.app', 'https://taskflow.com'],
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
-// Initialize Razorpay with the keys from the frontend .env.local file
-const razorpay = new Razorpay({
-    key_id: process.env.VITE_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || 'dummy_key_id',
-    key_secret: process.env.VITE_RAZORPAY_KEY_SECRET || process.env.RAZORPAY_KEY_SECRET || 'dummy_key_secret',
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per `window`
+    message: { error: "Too many requests from this IP, please try again after 15 minutes." }
 });
 
-app.post('/api/create-order', async (req, res) => {
+// Initialize Razorpay with the keys from the environment variables
+const razorpay = new Razorpay({
+    key_id: process.env.VITE_RAZORPAY_KEY_ID || process.env.RAZORPAY_KEY_ID || 'dummy_key_id',
+    key_secret: process.env.RAZORPAY_KEY_SECRET || 'dummy_key_secret',
+});
+
+app.post('/api/create-order', apiLimiter, async (req, res) => {
     try {
         const { amount, planName } = req.body;
 
