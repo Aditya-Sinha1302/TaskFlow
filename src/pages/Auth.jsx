@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Mail, Lock, Loader2, ArrowRight, UserPlus, LogIn } from 'lucide-react';
+import InteractiveBackground from '../components/ui/InteractiveBackground';
 import './Auth.css';
 
 const Auth = () => {
@@ -52,6 +53,7 @@ const Auth = () => {
 
     return (
         <div className="auth-container">
+            <InteractiveBackground />
             <div className="auth-card">
                 <div className="auth-header">
                     <div className="auth-logo-glow">
